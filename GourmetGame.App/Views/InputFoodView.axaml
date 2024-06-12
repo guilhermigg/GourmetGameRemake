@@ -7,12 +7,15 @@
              x:Class="GourmetGame.App.Views.InputFoodView"
              x:DataType="vm:InputFoodViewModel">
   <StackPanel HorizontalAlignment="Center">
-    <Label Content="Qual prato de comida você estava pensando?" /> 
-    <TextBox x:Name="FoodInputTextBox" Watermark="Comida" Width="240" Text="{Binding FoodInput, Mode=TwoWay}" />
+    <StackPanel IsVisible="{Binding FirstPageVisibility}">
+      <Label HorizontalAlignment="Center" Content="Qual prato de comida você estava pensando?" /> 
+      <TextBox HorizontalAlignment="Center" x:Name="FoodInputTextBox" Watermark="Comida" Width="240" Text="{Binding FoodInput, Mode=TwoWay}" />
+      <Button HorizontalAlignment="Center" Command="{Binding GoToNextPageCommand}" Content="Ok" />
+    </StackPanel>
 
-    <StackPanel HorizontalAlignment="Center">
-      <Label Content="O que o prato de comida que você pensou é, mas o do currentFood não é?" /> 
-      <TextBox x:Name="SecondFoodInputTextBox" Watermark="Comida" Width="240" Text="{Binding SecondFoodInput, Mode=TwoWay}" />
+    <StackPanel HorizontalAlignment="Center" IsVisible="{Binding SecondPageVisibility}">
+      <Label HorizontalAlignment="Center" Content="{Binding LabelSecondPage}" /> 
+      <TextBox HorizontalAlignment="Center" x:Name="SecondFoodInputTextBox" Watermark="Não é" Width="240" Text="{Binding SecondFoodInput, Mode=TwoWay}" />
       <Button HorizontalAlignment="Center" Command="{Binding AddFoodCommand}" Content="Ok" />
     </StackPanel>
   </StackPanel>

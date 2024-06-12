@@ -1,23 +1,12 @@
-using System;
 using System.Collections.Generic;
-using System.Security.Cryptography.X509Certificates;
-using System.Xml;
-using ReactiveUI;
 
 namespace GourmetGame.App.Services;
 
-public class Node
+public class Node(string food, Node? positive = null, Node? negative = null)
 {
-    public string Food { get; set; }
-    public Node? Positive { get;set; }
-    public Node? Negative {get;set;}
-
-    public Node(string food, Node? positive, Node? negative)
-    {
-        Food = food;
-        Positive = positive;
-        Negative = negative;
-    }
+    public string Food { get; set; } = food;
+    public Node? Positive { get; set; } = positive;
+    public Node? Negative { get; set; } = negative;
 }
 
 public class GameService
@@ -27,10 +16,15 @@ public class GameService
 
     public GameService()
     {
-        NodeList = [
-            new Node("Massa", new Node("Lasanha", null, null), new Node("Bolo de Chocolate", null, null))
-        ];
+        NodeList = InitializeNodeList();
         CurrentNode = NodeList[0];
+    }
+
+    public static List<Node> InitializeNodeList()
+    {
+        return [
+            new Node("Massa", new Node("Lasanha"), new Node("Bolo de Chocolate"))
+        ];
     }
 
     public Node? Guess(bool Answer)
@@ -42,10 +36,9 @@ public class GameService
 
     public void AddFood(string foodName, string negativePremise)
     {
-        Node PositivePremise = new(foodName, null, null);
-        Node NegativePremise = new(negativePremise, PositivePremise, null);
-
-        CurrentNode.Negative = NegativePremise;
+        Node newFoodNode = new(foodName);
+        Node negativeNode = new(negativePremise, newFoodNode, null);
+        CurrentNode.Negative = negativeNode;
     }
 
     public void Restart()
