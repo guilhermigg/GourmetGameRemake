@@ -47,7 +47,7 @@ public partial class InputFoodViewModel : ViewModelBase
             string secondFoodName = SecondFoodInput.ToString();
 
             _gameService.AddFood(foodName, secondFoodName);
-            _messenger.Send("Win");
+            _messenger.Send("Home");
             SwitchPagesVisibility();
         }
     }
