@@ -1,0 +1,20 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:GourmetGame.App.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="GourmetGame.App.Views.InputFoodView"
+             x:DataType="vm:InputFoodViewModel">
+  <StackPanel HorizontalAlignment="Center">
+    <Label Content="Qual prato de comida você estava pensando?" /> 
+    <TextBox x:Name="FoodInputTextBox" Watermark="Comida" Width="240" Text="{Binding FoodInput, Mode=TwoWay}" />
+
+    <StackPanel HorizontalAlignment="Center">
+      <Label Content="O que o prato de comida que você pensou é, mas o do currentFood não é?" /> 
+      <TextBox x:Name="SecondFoodInputTextBox" Watermark="Comida" Width="240" Text="{Binding SecondFoodInput, Mode=TwoWay}" />
+      <Button HorizontalAlignment="Center" Command="{Binding AddFoodCommand}" Content="Ok" />
+    </StackPanel>
+  </StackPanel>
+
+</UserControl>

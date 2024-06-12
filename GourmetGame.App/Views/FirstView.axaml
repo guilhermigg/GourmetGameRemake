@@ -1,0 +1,13 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+            xmlns:vm="clr-namespace:GourmetGame.App.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="GourmetGame.App.Views.FirstView"
+             x:DataType="vm:FirstViewModel">
+    <StackPanel>
+      <Label Content="Pense em um prato de comida que você gosta" />
+      <Button HorizontalAlignment="Center" Command="{Binding StartGameCommand}"> Ok </Button>
+    </StackPanel>
+</UserControl>
