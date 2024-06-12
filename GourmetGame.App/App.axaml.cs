@@ -7,7 +7,6 @@ using GourmetGame.App.ViewModels;
 using GourmetGame.App.Views;
 using Microsoft.Extensions.DependencyInjection;
 using CommunityToolkit.Extensions.DependencyInjection;
-using GourmetGame.App.Services;
 
 namespace GourmetGame.App;
 
@@ -27,7 +26,6 @@ public partial class App : Application
         ConfigureViewModels(services);
         ConfigureViews(services);
         services.AddSingleton<IMessenger>(WeakReferenceMessenger.Default);
-        services.AddSingleton(new GameService());
 
         var provider = services.BuildServiceProvider();
         Ioc.Default.ConfigureServices(provider);
@@ -46,11 +44,13 @@ public partial class App : Application
     [Singleton(typeof(FirstViewModel))]
     [Singleton(typeof(GameViewModel))]
     [Singleton(typeof(InputFoodViewModel))]
+    [Singleton(typeof(WinViewModel))]
     internal static partial void ConfigureViewModels(IServiceCollection services);
     
     [Singleton(typeof(MainWindow))]
     [Transient(typeof(FirstView))]
     [Transient(typeof(GameView))]
     [Transient(typeof(InputFoodView))]
+    [Transient(typeof(WinView))]
     internal static partial void ConfigureViews(IServiceCollection services);
 }
