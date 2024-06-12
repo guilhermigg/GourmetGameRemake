@@ -1,7 +1,6 @@
 ﻿using System;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Messaging;
-using GourmetGame.App.Messages;
 using GourmetGame.App.Services;
 
 namespace GourmetGame.App.ViewModels;
@@ -15,12 +14,15 @@ public partial class MainWindowViewModel : ViewModelBase
         WeakReferenceMessenger.Default.Register<MainWindowViewModel, string>(this, (_, message) =>
         {
             switch (message) {
+                case "Home":
+                    CurrentPage = new FirstViewModel();
+                    break;
                 case "Start":
                     gameService.Restart();
                     CurrentPage = new GameViewModel(gameService);
                     break;
                 case "Win":
-                    CurrentPage = new FirstViewModel();
+                    CurrentPage = new WinViewModel();
                     break;
                 case "Loss":
                     CurrentPage = new InputFoodViewModel(gameService);

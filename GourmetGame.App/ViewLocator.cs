@@ -19,6 +19,7 @@ public class ViewLocator : IDataTemplate
         RegisterViewFactory<FirstViewModel, FirstView>();
         RegisterViewFactory<GameViewModel, GameView>();
         RegisterViewFactory<InputFoodViewModel, InputFoodView>();
+        RegisterViewFactory<WinViewModel, WinView>();
     }
 
     public Control? Build(object? data)
